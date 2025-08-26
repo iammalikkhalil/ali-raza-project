@@ -1,0 +1,64 @@
+# === Inputs (from Phase 1) ===
+phase1_parquet: "data/processed/phase1_combined.parquet"
+
+# === Outputs ===
+p2_sample_output: "data/processed/p2_input_sample.parquet"
+clean_output: "data/processed/p2_beijing_clean.parquet"
+segments_output: "data/processed/segments.parquet"
+long_trips_output: "data/processed/long_trips.parquet"
+stops_output: "data/processed/bus_stops.csv"
+assigned_output: "data/processed/gps_with_stop_id.parquet"
+quality_report: "data/processed/p2_quality_report.json"
+fig_dir: "reports/phase2/figures"
+log_file: "reports/phase2/logs/phase2.log"
+
+# === Sampling / scope ===
+timezone: "Asia/Shanghai"     # Geolife timestamps are GMT; convert for local filters if used
+bbox:
+  lat_min: 39.5
+  lat_max: 40.5
+  lon_min: 115.5
+  lon_max: 117.0
+morning_window:
+  enable: false
+  start: "06:00"
+  end:   "09:00"
+target_sample_rows: 1000000
+shuffle_seed: 42
+
+# === Cleaning & continuity ===
+continuity:
+  max_gap_s: 30           # break trip if greater
+  max_jump_m: 200         # break trip if greater (single step)
+filters:
+  max_speed_mps: 60       # ~216 km/h
+  drop_dt_le_zero: true
+
+# === Segment windowing & validity ===
+segments:
+  win_s: 60
+  stride_s: 30
+  min_duration_s: 30
+  max_duration_s: 3600
+  min_distance_m: 100
+  max_distance_m: 30000
+  median_speed_kmh_min: 8
+  median_speed_kmh_max: 80
+  stop_ratio_max: 0.20
+  idle_speed_kmh: 2
+
+# === Depot inference & spatial scope ===
+school:
+  grid_cell_m: 300
+  radius_km: 30
+
+# === Stops (student pickup) ===
+kmeans:
+  k_scan: [200, 220, 240, 260, 280, 300]
+  downsample_points: 500000
+assign_radius_m: 400
+coverage_target: 0.80
+p90_distance_m_threshold: 600
+
+# === Randomness ===
+random_seed: 42

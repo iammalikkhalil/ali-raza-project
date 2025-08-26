@@ -1,0 +1,7 @@
+# Data files
+*.pkl
+*.csv
+*.plt
+*.parquet
+
+/venv

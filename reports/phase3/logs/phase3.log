@@ -1,0 +1,12 @@
+2025-08-25 20:11:54,981 - INFO - Segments/features saved: data/processed/features_segments.parquet rows=3,906
+2025-08-25 20:12:18,137 - INFO - lightgbm saved: models/phase3_travel_time.pkl | Eval MAE=217.16s (baseline 185.15s, gain -17.3%) RMSE=455.34s R2=0.338 | CV MAE (sec)=205.8182838766169±13.93
+2025-08-25 20:12:26,656 - INFO - Time matrix (p90): data/processed/time_matrix_p90.csv
+2025-08-25 20:12:26,698 - INFO - Distance matrix: data/processed/distance_matrix.csv
+2025-08-25 20:12:26,698 - INFO - Time matrix (p50): data/processed/time_matrix.csv
+2025-08-25 20:12:26,698 - INFO - Time matrix (pivot p50): data/processed/time_matrix_pivot.parquet
+2025-08-26 00:11:57,110 - INFO - Segments/features saved: data/processed/features_segments.parquet rows=4,500
+2025-08-26 00:12:13,936 - INFO - lightgbm saved: models/phase3_travel_time.pkl | Eval MAE=177.07s (baseline 176.81s, gain -0.1%) RMSE=370.84s R2=0.315 | CV MAE (sec)=144.48640710865126±14.31
+2025-08-26 00:12:16,979 - INFO - Time matrix (p90): data/processed/time_matrix_p90.csv
+2025-08-26 00:12:17,006 - INFO - Distance matrix: data/processed/distance_matrix.csv
+2025-08-26 00:12:17,006 - INFO - Time matrix (p50): data/processed/time_matrix.csv
+2025-08-26 00:12:17,006 - INFO - Time matrix (pivot p50): data/processed/time_matrix_pivot.parquet

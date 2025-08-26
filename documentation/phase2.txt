@@ -1,0 +1,100 @@
+# 📘 Phase 2: Data Preprocessing and Geospatial Mapping
+
+## 🎯 Objective
+
+Prepare the raw Geolife GPS dataset for machine learning by:
+
+* Structuring the data into valid segments
+* Filtering it down to relevant areas (e.g., Beijing)
+* Extracting time-specific movement (e.g., morning school time)
+* Clustering student locations into realistic **bus stops**
+* Creating **long-trip** segment data for better travel-time prediction
+
+---
+
+## 📂 Dataset Used
+
+* **Source**: Microsoft Research Asia – Geolife GPS Trajectories
+* **Raw Size**: \~1 GB (PLT format)
+* **Cleaned Size**: \~2 GB CSV (`geolife_step1_gps_data.csv`)
+* **Rows**: \~25 million GPS points
+* **Fields**: `user_id, latitude, longitude, datetime`
+
+---
+
+## 🛠️ Processing Steps
+
+### ✅ Step 1: Clean Raw Dataset
+
+Extracted timestamped GPS points from `.plt` files and converted to CSV.
+
+> ✅ Output: `geolife_step1_gps_data.csv`
+> (\~25M rows, all users, all locations)
+
+---
+
+### ✅ Step 2: Filter to Beijing Region
+
+Used latitude and longitude bounding box:
+
+* **Latitude**: 39.5 – 40.5
+* **Longitude**: 115.5 – 117.0
+
+> ✅ Output: \~19.8M rows from Beijing only (not saved separately)
+
+---
+
+### ✅ Step 3: Filter for Morning Movement
+
+Selected rows between **6:30 AM and 7:30 AM**
+(useful for simulating student pickup window)
+
+* Sampled 1,000,000 random rows to control data size
+
+> ✅ Output: `beijing_gps_morning_sample.csv`
+
+---
+
+### ✅ Step 4: Clustering into Bus Stops
+
+Used **KMeans clustering** to group student locations into 40 "bus stops."
+
+* Input: Morning movement dataset (1M rows)
+* Output 1: `bus_stops.csv` — lat/lon of each stop
+* Output 2: `gps_with_clusters.csv` — full GPS data with `stop_id` assigned (optional)
+
+---
+
+### ✅ Step 5: Extract Long Trip Segments (10–60 minutes)
+
+From full raw dataset (\~25M rows), extracted only those movement segments that:
+
+* Are continuous (same user)
+* Have a duration between **10 and 60 minutes**
+* Have distance between **100 meters and 30 km**
+
+> ✅ Output: `long_trips.csv`
+> (\~18,000 rows — more realistic for major bus route modeling)
+
+---
+
+## 📦 Output Summary
+
+| File                             | Purpose                                           |
+| -------------------------------- | ------------------------------------------------- |
+| `geolife_step1_gps_data.csv`     | Clean full GPS dataset                            |
+| `beijing_gps_morning_sample.csv` | Cleaned 1M rows for morning school timing         |
+| `bus_stops.csv`                  | Coordinates of 40 clustered stops                 |
+| `gps_with_clusters.csv`          | Morning GPS with assigned stop ID (optional)      |
+| `long_trips.csv`                 | Long travel segments (10–60 minutes) for modeling |
+
+---
+
+## ✅ Outcome of Phase 2
+
+You now have two high-quality subsets ready for **Phase 3 (Modeling)**:
+
+1. **Short-morning commutes** → for local, stop-to-stop travel time prediction
+2. **Long-distance trips** → for inter-zone or realistic city routing predictions
+
+Both datasets are clean, labeled, and geographically relevant (Beijing-focused).

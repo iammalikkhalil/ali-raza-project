@@ -1,0 +1,65 @@
+# === Inputs from Phase 2 ===
+gps_with_stop_id: "data/processed/gps_with_stop_id.parquet"
+bus_stops_csv: "data/processed/bus_stops.csv"
+
+# === Outputs ===
+features_parquet: "data/processed/features_segments.parquet"
+model_path: "models/phase3_travel_time.pkl"
+eval_report: "data/processed/eval_report_phase3.json"
+distance_matrix_csv: "data/processed/distance_matrix.csv"
+time_matrix_csv: "data/processed/time_matrix.csv"
+time_matrix_pivot: "data/processed/time_matrix_pivot.parquet"
+
+# === Logs & figures ===
+log_file: "reports/phase3/logs/phase3.log"
+fig_dir: "reports/phase3/figures"
+
+# === Segment filtering (kept for build_segments step) ===
+min_duration_sec: 30
+max_duration_sec: 3600        # 60 minutes
+min_distance_m: 100
+max_distance_m: 30000
+max_speed_kmh: 130
+
+# === Train / Eval ===
+random_seed: 42
+cv_folds: 3                   # 5 users → 3-fold CV is stabler
+test_size: 0.2                # user-based split
+
+# === Feature engineering (trainer + predictor keep in sync) ===
+features:
+  add_cyclical_time: true     # adds hour_sin/hour_cos from start_hour
+
+# === Target transform (stabilize heavy tails) ===
+target:
+  transform: "log1p"          # "none" or "log1p" (recommended)
+
+# === Monotone constraints ===
+# Disable to avoid LightGBM objective conflicts and underfitting.
+monotone: {}
+
+# === MODEL CHOICE ===
+model:
+  type: "lightgbm"            # "lightgbm" or "random_forest"
+  params:
+    objective: "regression_l1"  # robust MAE loss (works well for travel time)
+    n_estimators: 1200
+    learning_rate: 0.05
+    num_leaves: 128
+    max_depth: -1
+    min_child_samples: 20
+    subsample: 0.9
+    colsample_bytree: 0.9
+    reg_lambda: 1.0
+    n_jobs: -1
+    verbose: -1
+
+# === Optional: train quantile heads for reliability-aware costs ===
+quantiles:
+  enable: true
+  q_list: [0.5, 0.9]          # p50 and p90 travel times
+
+# === Default context for matrix prediction ===
+matrix_generation:
+  weekday: 2                  # 0=Mon ... 6=Sun
+  hour_of_day: 7.0            # 7:00 AM

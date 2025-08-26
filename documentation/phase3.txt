@@ -1,0 +1,127 @@
+# 📘 Phase 3: Travel Time Prediction Model
+
+---
+
+## 🎯 Objective
+
+The purpose of **Phase 3** is to train machine learning models that can predict how long it will take to travel between two GPS points. This prediction is essential for optimizing school bus routes, ensuring students are picked up and dropped off efficiently.
+
+---
+
+## 📁 Input Datasets
+
+We used **two different types** of commute patterns from Phase 2:
+
+| Dataset         | Description                            | File                             |
+| --------------- | -------------------------------------- | -------------------------------- |
+| **Short Trips** | Morning school-hour GPS data (1M rows) | `beijing_gps_morning_sample.csv` |
+| **Long Trips**  | Trips between 10 and 60 minutes        | `long_trips.csv`                 |
+
+Both datasets were cleaned and segmented before use.
+
+---
+
+## 🧪 Step 1: Segmentation and Feature Engineering
+
+We converted GPS points into **segments** — pairs of start and end locations with a timestamp and distance.
+
+### Features extracted:
+
+| Feature                 | Description                          |
+| ----------------------- | ------------------------------------ |
+| `latitude`, `longitude` | Start coordinates                    |
+| `lat_next`, `lon_next`  | End coordinates                      |
+| `start_hour`            | Time of day (e.g., 6.5 = 6:30 AM)    |
+| `weekday`               | Day of the week (0 = Monday)         |
+| `distance_m`            | Distance in meters                   |
+| `duration_sec`          | Actual travel time (target variable) |
+| `speed_mps`             | Speed (meters per second)            |
+| `direction_deg`         | Direction angle (degrees)            |
+
+### Scripts Used:
+
+* ✅ `generate_features.py`
+
+### Output Files:
+
+| File Name                  | Description                          |
+| -------------------------- | ------------------------------------ |
+| `features_short_trips.csv` | Engineered features from short trips |
+| `features_long_trips.csv`  | Engineered features from long trips  |
+
+---
+
+## 🤖 Step 2: Model Training
+
+We trained 3 different models using **Random Forest Regressor**, a machine learning algorithm good at handling tabular and nonlinear data.
+
+### 3 Models Trained:
+
+| Model Type      | Dataset Used               | Purpose                                 |
+| --------------- | -------------------------- | --------------------------------------- |
+| **Short Trips** | `features_short_trips.csv` | Accurate predictions for short commutes |
+| **Long Trips**  | `features_long_trips.csv`  | Handle longer travel durations          |
+| **Combined**    | Both datasets merged       | General-purpose unified model           |
+
+### Model Training Script:
+
+* ✅ `training_model.py`
+
+### Model Files Saved:
+
+| Model             | File Name            |
+| ----------------- | -------------------- |
+| Short Trips Model | `model_short.pkl`    |
+| Long Trips Model  | `model_long.pkl`     |
+| Combined Model    | `model_combined.pkl` |
+
+---
+
+## 📊 Step 3: Model Evaluation
+
+All models were evaluated using:
+
+| Metric                             | Description                                      |
+| ---------------------------------- | ------------------------------------------------ |
+| **MAE** (Mean Absolute Error)      | Average error in predicted time                  |
+| **RMSE** (Root Mean Squared Error) | Penalizes larger errors more                     |
+| **5-Fold Cross Validation**        | Validates model reliability on different subsets |
+
+### Final Results:
+
+| Model       | MAE (sec) | RMSE (sec) | Cross-Val MAE (sec) |
+| ----------- | --------- | ---------- | ------------------- |
+| Short Trips | 0.12      | 5.54       | 0.15                |
+| Long Trips  | 20.90     | 44.73      | 22.18               |
+| Combined    | 0.66      | 8.09       | 6.31                |
+
+---
+
+## 🎯 Conclusion
+
+* The **short trips model** is extremely accurate, ideal for school pickup times.
+* The **long trips model** helps understand how longer distances vary in time.
+* The **combined model** provides a flexible, one-size-fits-all solution.
+
+---
+
+## 📂 Outputs Summary
+
+| File                       | Purpose                            |
+| -------------------------- | ---------------------------------- |
+| `features_short_trips.csv` | Engineered dataset for short trips |
+| `features_long_trips.csv`  | Engineered dataset for long trips  |
+| `model_short.pkl`          | Trained model on short trips       |
+| `model_long.pkl`           | Trained model on long trips        |
+| `model_combined.pkl`       | Trained combined model             |
+
+---
+
+## 📸 Visual Assets (For Report)
+
+You should generate and save the following for documentation:
+
+1. **Bar Chart** of MAE & RMSE for all models.
+2. **Table Image** showing model comparison.
+3. **Screenshot** of training terminal logs.
+4. **Sample row of features** with explanations.

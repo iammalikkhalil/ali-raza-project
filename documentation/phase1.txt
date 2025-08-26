@@ -1,0 +1,41 @@
+**phase1.txt** — *Project Phase 1 Summary*
+
+### ✅ Phase 1: Problem Definition and Dataset Selection
+
+#### 📌 **Objective:**
+
+Optimize school bus routes using AI to minimize total travel time and distance while considering student pickup constraints (e.g., ride time, capacity, and proximity to stops).
+
+#### 🎯 **Goals:**
+
+* Minimize total distance and time traveled.
+* Reduce average ride time per student.
+* Respect constraints: bus capacity, max student ride time, and on-time school arrival.
+
+#### 📊 **Evaluation Metrics:**
+
+* Total route distance/time
+* MAE / RMSE (for travel time predictions)
+* Average student walking + ride time
+
+#### 🔒 **Constraints:**
+
+* Bus capacity (e.g., max 40 students)
+* Maximum ride duration (e.g., 45 minutes)
+* Pickup time windows (e.g., 6:30–7:30 AM)
+* Walking distance to stop (e.g., ≤ 400m)
+
+#### 📂 **Selected Dataset:**
+
+**Geolife GPS Trajectory Dataset (Microsoft Research Asia)**
+
+* 17,621 trajectories from 182 users over 5 years (2007–2012)
+* Densely sampled GPS logs (\~1–5 sec or 5–10m intervals)
+* Covers diverse modes (walk, bus, car, etc.)
+* Most data from **Beijing**, ideal for consistent mapping
+* Includes transportation mode labels (subset only)
+
+#### 🔧 Notes:
+
+* Useful for simulating student travel behavior and clustering stops.
+* Will require filtering to morning commutes and a specific region (e.g., within Beijing’s 5th Ring Road).

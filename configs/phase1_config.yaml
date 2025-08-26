@@ -1,0 +1,27 @@
+# configs.phase1_config.yaml
+
+raw_data_dir: "data/raw/dataset"
+interim_data_dir: "data/interim"
+processed_data_dir: "data/processed"
+
+# Validation settings
+required_file_extension: ".plt"
+min_file_size_kb: 1      # ignore empty or corrupted files
+max_file_size_mb: 5      # skip files larger than expected (sanity check)
+
+# Metadata settings
+metadata_output: "domain/phase1/dataset_metadata.json"
+log_dir: "reports/phase1/logs"
+figures_dir: "reports/phase1/figures"
+summary_report: "reports/phase1/summary_report.md"
+
+# Dataset info
+expected_columns: ["latitude", "longitude", "unused", "altitude", "days", "date", "time"]
+datetime_format: "%Y-%m-%d %H:%M:%S"
+
+# Logs
+logging:
+  log_file: "reports/phase1/logs/phase1.log"
+  log_level: "INFO"
+  max_bytes: 1048576   # 1 MB per log file
+  backup_count: 3      # keep last 3 logs

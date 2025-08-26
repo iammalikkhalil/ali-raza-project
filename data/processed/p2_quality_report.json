@@ -1,0 +1,16 @@
+{
+  "coverage_pct": 0.8364921490583571,
+  "n_stops": 200,
+  "avg_stop_size": 4288.369230769231,
+  "dist_to_stop_p50_m": 126.38756530152982,
+  "dist_to_stop_p90_m": 302.07537893196957,
+  "n_segments_total": 60062,
+  "car_like_share": 0.9999667010755553,
+  "median_segment_duration_sec": 55.0,
+  "median_segment_distance_m": 195.52002143532548,
+  "gates": {
+    "coverage_ok": true,
+    "p90_ok": true,
+    "stops_ok": true
+  }
+}

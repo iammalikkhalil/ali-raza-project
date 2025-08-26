@@ -1,0 +1,35 @@
+{
+  "n_rows": 4500,
+  "train_rows": 4329,
+  "test_rows": 171,
+  "n_users_total": 5,
+  "train_groups": 4,
+  "cv_folds_used": 3,
+  "cv_mae_sec_mean": 144.48640710865126,
+  "cv_mae_sec_std": 14.314220891691026,
+  "test_mae_sec": 177.06770082554792,
+  "test_rmse_sec": 370.8367133200621,
+  "test_r2": 0.3152454520920951,
+  "baseline_mae_sec": 176.80742540455185,
+  "baseline_rmse_sec": 378.63086038849923,
+  "gain_pct_over_baseline": -0.1472084220447937,
+  "model_type": "lightgbm",
+  "model_path": "models/phase3_travel_time.pkl",
+  "fig_metrics_bar": "reports/phase3/figures/metrics_bar.png",
+  "quantiles_trained": [
+    "0.5",
+    "0.9"
+  ],
+  "target_type": "log_time_ratio",
+  "features": [
+    "start_hour",
+    "weekday",
+    "distance_m",
+    "direction_deg",
+    "hour_sin",
+    "hour_cos",
+    "distance_log",
+    "dir_sin",
+    "dir_cos"
+  ]
+}

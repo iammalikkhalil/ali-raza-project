@@ -1,0 +1,16 @@
+{
+  "num_files": 18223,
+  "num_points": 24781007,
+  "num_users": 181,
+  "columns": [
+    "latitude",
+    "longitude",
+    "unused",
+    "altitude",
+    "days",
+    "date",
+    "time",
+    "datetime",
+    "user_id"
+  ]
+}

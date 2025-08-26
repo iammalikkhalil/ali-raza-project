@@ -1,0 +1,114 @@
+# 📘 **Phase 4: Vehicle Routing Optimization (VRP)**
+
+## 🎯 Objective
+
+The primary goal of Phase 4 was to **assign optimized bus routes** to pick up students (represented by clustered GPS stops) and return them to the school (depot), while **minimizing travel cost**, which includes **both distance and time**. The output is a set of routes for a fixed number of buses, each route starting and ending at the school (depot).
+
+---
+
+## 🏗️ Workflow Overview
+
+1. **Input Preparation**
+
+   * **Bus stops** were generated from Phase 3, based on predicted pickup points.
+   * **Depot (School)** location was fixed and manually added.
+   * Two matrices were computed:
+
+     * `distance_matrix.csv`: pairwise haversine distances between all stops.
+     * `time_matrix.csv`: predicted travel time between all stops using the trained model.
+
+2. **Configurable Parameters** (`vrp_config.json`)
+
+   ```json
+   {
+       "num_buses": 5,
+       "bus_capacity": 25,
+       "depot_id": 999,
+       "max_route_minutes": 60,
+       "use_predicted_travel_time": true
+   }
+   ```
+
+3. **Solving Approaches Explored**
+
+   * **Distance-based VRP** (only minimizes geographic distance)
+   * **Time-based VRP** (minimizes predicted travel time)
+   * **Combined-cost VRP** (blends distance and time with weighted scores)
+
+---
+
+## 🧠 Methodology
+
+### 1. **Using OR-Tools Routing Solver**
+
+* Used `RoutingModel` from Google's OR-Tools.
+* Setup allowed:
+
+  * Multiple vehicles (buses)
+  * Start and end at a central depot
+  * Flexible stop assignment
+  * Route duration constraints
+  * Custom cost functions (distance, time, or combined)
+
+### 2. **Key Algorithmic Techniques**
+
+* **Arc Cost Evaluator**: Defined using combined cost = `0.6*time + 0.4*distance`.
+* **Penalty for Skipping Stops**: Enforced visit of all stops.
+* **Disjunctions**: Used to avoid leaving unassigned stops.
+* **Metaheuristics**:
+
+  * `PATH_CHEAPEST_ARC` for fast initial solution.
+  * `GUIDED_LOCAL_SEARCH` for improved optimization.
+
+---
+
+## 🧪 Experiments & Observations
+
+| Approach       | Result Summary                                                                                                           |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Distance-Based | Fast and clean routes; shorter total distance but ignored real-time factors.                                             |
+| Time-Based     | Took a long time or returned poor/invalid solutions due to overly tight constraints.                                     |
+| Combined-Cost  | Produced valid routes but biased toward minimizing total cost using one vehicle. Needed tuning to balance vehicle usage. |
+
+### Issues Encountered:
+
+* **Time-based solver** often failed with hard constraints (e.g., 60 min max route).
+* **Underutilization of buses**: Solver preferred using fewer vehicles unless penalized.
+* **Unbalanced routes**: Some buses covered all while others were unused.
+
+---
+
+## 📊 Final Output
+
+* `bus_routes_combined_cost.csv`: CSV of optimized routes, one per bus.
+* Each row: `bus_id`, `route` (list of stop IDs including depot).
+* Routes visualized using both **Matplotlib** and **Folium HTML maps**.
+
+---
+
+## 📈 Evaluation (Qualitative)
+
+* **Best performance** was seen with combined-cost + relaxed constraints + penalties.
+* **Room for improvement**:
+
+  * Incorporating **capacity constraints**
+  * Using **better clustering** before routing (to localize stops)
+  * Applying **route balancing heuristics** (equal load across buses)
+
+---
+
+## 📎 Files Generated
+
+| File                                 | Description                                           |
+| ------------------------------------ | ----------------------------------------------------- |
+| `distance_matrix.csv`                | Distance (meters) between all stops                   |
+| `time_matrix.csv`                    | Predicted travel time (seconds) between all stops     |
+| `bus_routes_combined_cost.csv`       | Final output of optimized routes                      |
+| `routes_map.html` / `routes_map.png` | Visual representation of routes                       |
+| `vrp_config.json`                    | Configuration for number of buses, depot, constraints |
+
+---
+
+## ✅ Conclusion
+
+Phase 4 successfully implemented a real-world vehicle routing optimization model that utilized **both spatial and temporal dynamics** of urban transport. While the current model generates feasible routes, additional fine-tuning and enhancements (e.g., route balancing, capacity limits, smarter seeding) can significantly improve real-world usability.
