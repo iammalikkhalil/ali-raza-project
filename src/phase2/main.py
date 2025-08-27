@@ -1,7 +1,7 @@
 from src.phase2.utils_phase2 import load_config, setup_logging
 from src.phase2.sample_phase1 import make_p2_sample
 # from src.phase2.clean_and_trips import make_clean_and_trips
-from src.phase2.clean_and_trips import clean_and_segment_in_batches
+from src.phase2.clean_and_trips import clean_and_segment_in_batches_optimized
 from src.phase2.cluster_stops import make_bus_stops
 from src.phase2.assign_stops import assign_points_to_stops
 from src.phase2.generate_report import build_p2_report
@@ -16,7 +16,7 @@ def main():
 
     # 2) Clean + trip segmentation (+ long trips)
     # make_clean_and_trips(cfg, logger)
-    clean_and_segment_in_batches(cfg, logger)
+    clean_and_segment_in_batches_optimized(cfg, logger)
 
     # 3) Cluster stops (KMeans scan 200–300) + depot inferred automatically
     make_bus_stops(cfg, logger)

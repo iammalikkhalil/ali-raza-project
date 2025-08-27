@@ -1,15 +1,15 @@
 {
-  "coverage_pct": 0.8364921490583571,
-  "n_stops": 200,
-  "avg_stop_size": 4288.369230769231,
-  "dist_to_stop_p50_m": 126.38756530152982,
-  "dist_to_stop_p90_m": 302.07537893196957,
-  "n_segments_total": 60062,
-  "car_like_share": 0.9999667010755553,
-  "median_segment_duration_sec": 55.0,
-  "median_segment_distance_m": 195.52002143532548,
+  "coverage_pct": 0.7694817845835283,
+  "n_stops": 2200,
+  "avg_stop_size": 5317.173130193906,
+  "dist_to_stop_p50_m": 44.61453697556909,
+  "dist_to_stop_p90_m": 142.83595628157718,
+  "n_segments_total": 485191,
+  "car_like_share": 1.0,
+  "median_segment_duration_sec": 45.0,
+  "median_segment_distance_m": 400.9255153605727,
   "gates": {
-    "coverage_ok": true,
+    "coverage_ok": false,
     "p90_ok": true,
     "stops_ok": true
   }

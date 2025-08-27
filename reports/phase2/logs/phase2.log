@@ -1,70 +1,16 @@
-2025-08-25 14:47:03,646 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-25 14:47:06,276 - INFO - Clean saved: data/processed/p2_beijing_clean.parquet rows=999,379
-2025-08-25 14:47:06,403 - INFO - Long trips saved: data/processed/long_trips.parquet rows=1,573
-2025-08-25 14:47:06,573 - INFO - Downsampled for clustering to 400,000 points.
-2025-08-25 14:47:26,018 - INFO - HDBSCAN found 182 clusters (excluding noise).
-2025-08-25 14:47:26,445 - INFO - Saved 182 candidate bus stops to data/processed/bus_stops.csv
-2025-08-25 14:47:33,117 - INFO - Assigned points saved: data/processed/gps_with_stop_id.parquet rows=999,379, coverage=9.84%
-2025-08-25 14:47:33,150 - WARNING - Quality gates flagged: Low coverage, High median distance, High p90 distance
-2025-08-25 14:47:33,150 - INFO - Quality report: data/processed/p2_quality_report.json
-2025-08-25 15:18:27,456 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-25 15:18:30,213 - INFO - Clean saved: data/processed/p2_beijing_clean.parquet rows=999,379
-2025-08-25 15:18:30,367 - INFO - Long trips saved: data/processed/long_trips.parquet rows=1,573
-2025-08-25 15:18:30,729 - INFO - Traffic center: 47,823 pts in 300m cell → (40.007630, 116.319791)
-2025-08-25 15:18:30,792 - INFO - Points within 30.0 km of school: 988,742
-2025-08-25 15:18:30,943 - INFO - Downsampled to 500,000 points for clustering fit (K=250).
-2025-08-25 15:18:33,069 - INFO - Generated 250 student stops (+1 school depot) → saved to data/processed/bus_stops.csv
-2025-08-25 15:18:41,863 - INFO - Assigned points saved: data/processed/gps_with_stop_id.parquet rows=999,379, coverage=86.41%
-2025-08-25 15:18:41,912 - WARNING - Quality gates flagged: High p90 distance
-2025-08-25 15:18:41,912 - INFO - Quality report: data/processed/p2_quality_report.json
-2025-08-25 15:23:47,457 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-25 15:23:50,427 - INFO - Clean saved: data/processed/p2_beijing_clean.parquet rows=999,379
-2025-08-25 15:23:50,566 - INFO - Long trips saved: data/processed/long_trips.parquet rows=1,573
-2025-08-25 15:23:50,920 - INFO - Traffic center: 47,823 pts in 300m cell → (40.007630, 116.319791)
-2025-08-25 15:23:50,979 - INFO - Points within 30.0 km of school: 988,742
-2025-08-25 15:23:51,128 - INFO - Downsampled to 500,000 points for clustering fit (K=280).
-2025-08-25 15:23:53,452 - INFO - Generated 280 student stops (+1 school depot) → saved to data/processed/bus_stops.csv
-2025-08-25 15:24:03,615 - INFO - Assigned points saved: data/processed/gps_with_stop_id.parquet rows=999,379, coverage=87.80%
-2025-08-25 15:24:03,662 - INFO - Quality report: data/processed/p2_quality_report.json
-2025-08-25 23:42:07,646 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-25 23:42:11,117 - INFO - Clean saved: data/processed/p2_beijing_clean.parquet rows=999,689
-2025-08-25 23:53:54,431 - INFO - Segments saved: data/processed/segments.parquet rows=60,062
-2025-08-25 23:53:54,431 - INFO - Long trips saved: data/processed/long_trips.parquet rows=0
-2025-08-25 23:53:56,410 - INFO - Traffic center: 47,823 pts in 300m cell → (40.007622, 116.320600)
-2025-08-25 23:53:56,471 - INFO - Points within 30.0 km of school: 989,065
-2025-08-25 23:53:56,506 - INFO - Downsampled to 500,000 points for clustering fit.
-2025-08-26 00:07:02,938 - INFO - KMeans picked K=200 (coverage=84.52%, p90=507.7 m)
-2025-08-26 00:10:18,524 - INFO - Saved 200 student stops (+1 depot) → data/processed/bus_stops.csv
-2025-08-26 00:10:25,647 - INFO - Assigned points saved: data/processed/gps_with_stop_id.parquet rows=999,689, coverage=83.65%
-2025-08-26 00:10:26,335 - INFO - Quality report: data/processed/p2_quality_report.json
-2025-08-26 01:06:01,806 - INFO - Segmenting trips in chunks...
-2025-08-26 22:47:25,300 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=15,000,000
-2025-08-26 22:48:26,199 - INFO - Clean saved: data/processed/p2_beijing_clean.parquet rows=14,510,386
-2025-08-27 00:19:16,139 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-27 00:19:20,317 - INFO - Clean saved: data/processed/p2_beijing_clean.parquet rows=999,689
-2025-08-27 00:32:36,443 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-27 00:32:39,026 - INFO - Clean saved: data/processed/p2_beijing_clean.parquet rows=999,689
-2025-08-27 00:52:45,856 - INFO - Segments saved: data/processed/segments.parquet rows=60,062
-2025-08-27 00:52:45,856 - INFO - Long trips saved: data/processed/long_trips.parquet rows=0
-2025-08-27 00:52:47,288 - INFO - Traffic center: 47,823 pts in 300m cell → (40.007622, 116.320600)
-2025-08-27 00:52:47,352 - INFO - Points within 30.0 km of school: 989,065
-2025-08-27 00:52:47,389 - INFO - Downsampled to 500,000 points for clustering fit.
-2025-08-27 01:10:17,366 - INFO - KMeans picked K=200 (coverage=84.52%, p90=507.7 m)
-2025-08-27 01:13:58,442 - INFO - Saved 200 student stops (+1 depot) → data/processed/bus_stops.csv
-2025-08-27 01:14:06,800 - INFO - Assigned points saved: data/processed/gps_with_stop_id.parquet rows=999,689, coverage=83.65%
-2025-08-27 01:14:07,645 - INFO - Quality report: data/processed/p2_quality_report.json
-2025-08-27 01:19:36,396 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-27 01:19:36,609 - INFO - Starting Phase 2: Batch cleaning and segmentation...
-2025-08-27 01:33:23,214 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-27 01:40:00,820 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-27 01:40:01,051 - INFO - Processing batches...
-2025-08-27 01:58:27,678 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=1,000,000
-2025-08-27 01:59:41,423 - INFO - Batch 0 → clean=199,976, segs=4,913
-2025-08-27 02:00:55,728 - INFO - Batch 1 → clean=199,984, segs=4,842
-2025-08-27 02:01:58,533 - INFO - Batch 2 → clean=199,980, segs=5,002
-2025-08-27 02:03:07,289 - INFO - Batch 3 → clean=199,984, segs=4,905
-2025-08-27 02:04:22,080 - INFO - Batch 4 → clean=199,976, segs=5,004
-2025-08-27 02:04:22,081 - INFO - ✅ Done. Outputs:
-  Clean=data/processed/p2_beijing_clean
-  Segments=data/processed/segments
-  Long=data/processed/long_trips
+2025-08-27 17:18:31,148 - INFO - Sample written: data/processed/p2_input_sample.parquet rows=15,000,000
+2025-08-27 17:18:33,636 - INFO - Total rows to process: 15,000,000
+2025-08-27 17:56:50,621 - INFO - ✅ Processing complete!
+2025-08-27 17:56:51,564 - INFO - Loading data from data/processed/p2_beijing_clean.parquet...
+2025-08-27 17:57:18,727 - INFO - Traffic center: 143,941 pts in 300m cell → (39.974587, 116.331380)
+2025-08-27 17:57:18,728 - INFO - Filtering points near school...
+2025-08-27 17:57:19,643 - INFO - Points within 30.0 km of school: 14,278,970
+2025-08-27 17:57:20,138 - INFO - Downsampled to 1,000,000 points for clustering fit.
+2025-08-27 17:57:20,138 - INFO - Scanning K values: [1600, 1800, 2000, 2200, 2400]
+2025-08-27 18:01:41,012 - INFO - Selected K=2200 (coverage=80.02%, p90=352.2 m)
+2025-08-27 18:01:41,012 - INFO - Performing final clustering on full dataset...
+2025-08-27 18:05:46,252 - INFO - ✅ Saved 2200 student stops (+1 depot) in 534.7 seconds
+2025-08-27 18:05:46,253 - INFO - → data/processed/bus_stops.csv
+2025-08-27 18:15:33,470 - INFO - Assigned points saved: data/processed/gps_with_stop_id.parquet rows=14,967,212, coverage=76.95%
+2025-08-27 18:15:35,044 - WARNING - Quality gates flagged: Low coverage
+2025-08-27 18:15:35,044 - INFO - Quality report: data/processed/p2_quality_report.json
